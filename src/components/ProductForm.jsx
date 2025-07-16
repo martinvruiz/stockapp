@@ -8,6 +8,7 @@ export default function ProductForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -20,6 +21,8 @@ export default function ProductForm() {
     } else {
       console.log(error);
     }
+
+    reset();
   };
 
   return (
