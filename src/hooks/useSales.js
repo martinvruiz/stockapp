@@ -53,7 +53,8 @@ export default function useSales() {
       const productData = productSnap.data();
 
       if (productData.stock < quantity) {
-        throw new Error("Stock insuficiente");
+        setError("Stock insuficiente");
+        return;
       }
 
       await addDoc(collection(firestore, "sales"), {

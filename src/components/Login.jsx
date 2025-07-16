@@ -12,7 +12,7 @@ export default function Login({ onSubmit, loading, error }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-md min-w-xs md:min-w-sm mx-auto p-6 border rounded-lg shadow space-y-4"
+      className="max-w-md min-w-xs md:min-w-sm mx-auto p-6 border bg-red-700 rounded-lg shadow space-y-4"
     >
       <h2 className="text-2xl font-semibold text-center">Login</h2>
 
@@ -31,7 +31,9 @@ export default function Login({ onSubmit, loading, error }) {
           autoComplete="on"
         />
         {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+          <p className="text-red-700 bg-red-200 rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+            {errors.email.message}
+          </p>
         )}
       </div>
 
@@ -50,7 +52,9 @@ export default function Login({ onSubmit, loading, error }) {
           autoComplete="on"
         />
         {errors.password && (
-          <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+          <p className="text-red-700 bg-red-200 rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+            {errors.password.message}
+          </p>
         )}
       </div>
 

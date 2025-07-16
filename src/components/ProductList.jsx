@@ -2,8 +2,10 @@ import Image from "next/image";
 
 export default function ProductList({ productsData, onClickProducts }) {
   return (
-    <div className="mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">Productos</h1>
+    <div className="mx-auto px-4 pb-8">
+      <h1 className="text-3xl font-bold text-center text-red-700 mb-8">
+        Productos
+      </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {productsData.map((product) => (
@@ -49,7 +51,7 @@ export default function ProductList({ productsData, onClickProducts }) {
 
               <button
                 onClick={() => onClickProducts(product)}
-                className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-colors duration-300"
+                className="w-full mt-2 bg-red-700 hover:bg-red-500 text-white py-2 px-4 rounded transition-colors duration-300"
               >
                 Ver detalles
               </button>

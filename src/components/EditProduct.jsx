@@ -67,7 +67,7 @@ export default function EditProduct({ product, onSubmit }) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
+        className="w-full bg-red-700 text-white py-2 rounded hover:bg-red-500"
       >
         {isSubmitting ? "Guardando..." : "Guardar Cambios"}
       </button>

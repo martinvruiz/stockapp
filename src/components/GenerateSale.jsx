@@ -57,11 +57,11 @@ export default function GenerateSale() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-md mx-auto p-6 my-2 rounded space-y-4"
+      className="max-w-md mx-auto p-6 my-2 rounded-md space-y-4 bg-red-700"
     >
       <h2 className="text-xl font-semibold text-center">Generar venta</h2>
 
-      <div>
+      <div className="flex flex-col items-center">
         <label className="block mb-1">Producto</label>
         <select
           {...register("productId", { required: "Selecciona un producto" })}
@@ -77,13 +77,13 @@ export default function GenerateSale() {
           ))}
         </select>
         {errors.productId && (
-          <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+          <p className="text-red-700 bg-red-200 rounded px-2 py-1 text-sm text-center inline-block mt-2">
             {errors.productId.message}
           </p>
         )}
       </div>
 
-      <div>
+      <div className="flex flex-col items-center">
         <label className="block mb-1">Cantidad</label>
         <input
           type="number"
@@ -97,13 +97,13 @@ export default function GenerateSale() {
           className="w-full border rounded px-3 py-2"
         />
         {errors.quantity && (
-          <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+          <p className="text-red-700 bg-red-200 rounded px-2 py-1 text-sm text-center inline-block mt-2">
             {errors.quantity.message}
           </p>
         )}
       </div>
 
-      <div>
+      <div className="flex flex-col items-center">
         <label className="block mb-1">Precio</label>
         <input
           type="number"
@@ -116,7 +116,7 @@ export default function GenerateSale() {
           className="w-full border rounded px-3 py-2"
         />
         {errors.price && (
-          <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+          <p className="text-red-700 bg-red-200 rounded px-2 py-1 text-sm text-center inline-block mt-2">
             {errors.price.message}
           </p>
         )}
@@ -131,7 +131,7 @@ export default function GenerateSale() {
       </button>
 
       {error && (
-        <p className="text-red-500 p-2 rounded-md bg-white text-center">
+        <p className="text-red-700 p-2 rounded-md bg-red-200 text-center">
           {error}
         </p>
       )}

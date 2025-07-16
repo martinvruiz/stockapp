@@ -42,13 +42,14 @@ export default function page() {
                 onSubmit={async (data) => {
                   await updateDocument(selectedProduct.id, data);
                   setEditModal(false);
+                  setModalOpen(false);
                 }}
               />
             )}
           </Modal>
         </div>
       ) : (
-        <p className="text-xl font-bold text-center">
+        <p className="text-xl font-bold text-center text-red-700">
           No hay datos para mostrar, inicia sesion si no lo hiciste.
         </p>
       )}

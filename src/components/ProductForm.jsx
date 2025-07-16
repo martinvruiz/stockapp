@@ -27,24 +27,24 @@ export default function ProductForm() {
 
   return (
     <Container>
-      <div className="flex flex-col items-center p-6 min-w-xs">
+      <div className="flex flex-col items-center p-6 bg-red-700 rounded-md min-w-xs">
         <h2 className="text-2xl font-bold mb-4">Agregar producto</h2>
         <div className="w-full max-w-md">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div>
+            <div className="flex flex-col items-center">
               <input
                 {...register("title", { required: "El título es requerido" })}
                 placeholder="Título"
                 className="w-full p-2 border rounded"
               />
               {errors.title && (
-                <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+                <p className="text-red-700 bg-red-200 rounded px-2 py-1 text-sm text-center inline-block mt-2">
                   {errors.title.message}
                 </p>
               )}
             </div>
 
-            <div>
+            <div className="flex flex-col items-center">
               <input
                 {...register("price", {
                   required: "El precio es requerido",
@@ -55,13 +55,13 @@ export default function ProductForm() {
                 className="w-full p-2 border rounded"
               />
               {errors.price && (
-                <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+                <p className="text-red-700 bg-red-200 rounded px-2 py-1 text-sm text-center inline-block mt-2">
                   {errors.price.message}
                 </p>
               )}
             </div>
 
-            <div>
+            <div className="flex flex-col items-center">
               <input
                 {...register("revenue", {
                   required: "El precio es requerido",
@@ -73,13 +73,13 @@ export default function ProductForm() {
                 className="w-full p-2 border rounded"
               />
               {errors.price && (
-                <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+                <p className="text-red-700 bg-red-200 rounded px-2 py-1 text-sm text-center inline-block mt-2">
                   {errors.price.message}
                 </p>
               )}
             </div>
 
-            <div>
+            <div className="flex flex-col items-center">
               <input
                 {...register("stock", {
                   required: "El stock es requerido",
@@ -90,13 +90,13 @@ export default function ProductForm() {
                 className="w-full p-2 border rounded"
               />
               {errors.stock && (
-                <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+                <p className="text-red-700 bg-red-200 rounded px-2 py-1 text-sm text-center inline-block mt-2">
                   {errors.stock.message}
                 </p>
               )}
             </div>
 
-            <div>
+            <div className="flex flex-col items-center">
               <input
                 {...register("img", {
                   required: "La URL de la imagen es requerida",
@@ -105,7 +105,7 @@ export default function ProductForm() {
                 className="w-full p-2 border rounded"
               />
               {errors.img && (
-                <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+                <p className="text-red-700 bg-red-200 rounded px-2 py-1 text-sm  text-center inline-block mt-2">
                   {errors.img.message}
                 </p>
               )}
