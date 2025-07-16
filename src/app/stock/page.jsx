@@ -19,11 +19,6 @@ export default function page() {
     setModalOpen(true);
   };
 
-  const handleEditProduct = async (product, data) => {
-    await updateDocument(product.id, data);
-    setEditModal(false);
-  };
-
   return (
     <Container>
       {products.length > 0 ? (

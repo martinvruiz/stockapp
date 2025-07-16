@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 
-export default function Login({ onSubmit }) {
+export default function Login({ onSubmit, loading, error }) {
   const {
     register,
     handleSubmit,
@@ -12,7 +12,7 @@ export default function Login({ onSubmit }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-sm mx-auto p-6 border rounded-lg shadow space-y-4"
+      className="max-w-md min-w-xs md:min-w-sm mx-auto p-6 border rounded-lg shadow space-y-4"
     >
       <h2 className="text-2xl font-semibold text-center">Login</h2>
 
@@ -56,9 +56,10 @@ export default function Login({ onSubmit }) {
 
       <button
         type="submit"
+        disabled={loading}
         className="w-full bg-white text-black py-2 rounded hover:bg-gray-400 transition"
       >
-        Login
+        {loading ? "Iniciando sesión" : "Inicia sesión"}
       </button>
     </form>
   );

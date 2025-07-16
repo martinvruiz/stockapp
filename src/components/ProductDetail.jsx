@@ -9,7 +9,7 @@ const ProductDetail = ({ product, onClickButton }) => {
       <div className="relative w-full h-48 mb-4">
         <Image
           alt={`image of ${title}`}
-          src={`https://drive.google.com/uc?export=view&id=${img}`}
+          src={img}
           fill
           className="object-cover rounded"
           sizes="(max-width: 768px) 100vw, 400px"

@@ -15,7 +15,7 @@ export default function ProductList({ productsData, onClickProducts }) {
               <Image
                 width={260}
                 height={250}
-                src={`https://drive.google.com/uc?export=view&id=${product.img}`}
+                src={product.img}
                 alt={product.title}
                 onError={(e) => {
                   e.target.src =

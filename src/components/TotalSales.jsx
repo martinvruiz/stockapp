@@ -23,7 +23,7 @@ export default function TotalSales() {
             className="flex justify-between items-center p-4 bg-white text-black"
           >
             <div>
-              <p className="font-semibold">{productTitle}</p>
+              <p className="font-semibold text-red-700">{productTitle}</p>
               <p className="text-gray-600">Cantidad: {quantity}</p>
               <p className="text-gray-600">Precio: ${price.toFixed(2)}</p>
               <p className="text-gray-600">Total: ${total.toFixed(2)}</p>

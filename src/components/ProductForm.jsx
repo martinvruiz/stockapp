@@ -11,7 +11,7 @@ export default function ProductForm() {
     formState: { errors },
   } = useForm();
 
-  const { addDocument, error } = useDB();
+  const { addDocument, error, loading } = useDB();
 
   const onSubmit = async (data) => {
     const product = await addDocument(data);
@@ -24,7 +24,7 @@ export default function ProductForm() {
 
   return (
     <Container>
-      <div className="flex flex-col items-center p-6">
+      <div className="flex flex-col items-center p-6 min-w-xs">
         <h2 className="text-2xl font-bold mb-4">Agregar producto</h2>
         <div className="w-full max-w-md">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -35,7 +35,9 @@ export default function ProductForm() {
                 className="w-full p-2 border rounded"
               />
               {errors.title && (
-                <p className="text-red-500 text-sm">{errors.title.message}</p>
+                <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+                  {errors.title.message}
+                </p>
               )}
             </div>
 
@@ -50,7 +52,9 @@ export default function ProductForm() {
                 className="w-full p-2 border rounded"
               />
               {errors.price && (
-                <p className="text-red-500 text-sm">{errors.price.message}</p>
+                <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+                  {errors.price.message}
+                </p>
               )}
             </div>
 
@@ -66,7 +70,9 @@ export default function ProductForm() {
                 className="w-full p-2 border rounded"
               />
               {errors.price && (
-                <p className="text-red-500 text-sm">{errors.price.message}</p>
+                <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+                  {errors.price.message}
+                </p>
               )}
             </div>
 
@@ -81,7 +87,9 @@ export default function ProductForm() {
                 className="w-full p-2 border rounded"
               />
               {errors.stock && (
-                <p className="text-red-500 text-sm">{errors.stock.message}</p>
+                <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+                  {errors.stock.message}
+                </p>
               )}
             </div>
 
@@ -94,15 +102,18 @@ export default function ProductForm() {
                 className="w-full p-2 border rounded"
               />
               {errors.img && (
-                <p className="text-red-500 text-sm">{errors.img.message}</p>
+                <p className="text-red-700 bg-white rounded px-2 py-1 text-sm w-full text-center inline-block mt-2">
+                  {errors.img.message}
+                </p>
               )}
             </div>
 
             <button
               type="submit"
               className="w-full bg-white text-black p-2 rounded hover:bg-gray-400"
+              disabled={loading}
             >
-              Guardar Producto
+              {loading ? "Guardando" : "Guardar Producto"}
             </button>
           </form>
         </div>

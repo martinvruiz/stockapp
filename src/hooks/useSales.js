@@ -76,5 +76,5 @@ export default function useSales() {
     }
   };
 
-  return { addSale, loading, error, sales };
+  return { addSale, loading, error, sales, setError };
 }
