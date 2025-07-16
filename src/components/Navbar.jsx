@@ -155,7 +155,7 @@ export default function Navbar({ children }) {
           </button>
         </header>
 
-        <main className="w-full h-full flex-1 flex flex-col items-center justify-center bg-neutral-300">
+        <main className="w-full min-h-[100dvh] flex-1 flex flex-col items-center justify-center bg-neutral-300">
           {children}
         </main>
       </div>

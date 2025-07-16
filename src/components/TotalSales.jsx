@@ -14,8 +14,10 @@ export default function TotalSales() {
   }
 
   return (
-    <div className="w-full mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4 text-center">Ventas totales</h2>
+    <div className="w-full min-h-full mx-auto p-4">
+      <h2 className="text-2xl text-red-700 font-bold pb-4 text-center">
+        Ventas totales
+      </h2>
       <ul className="divide-y divide-gray-300 border rounded">
         {sales.map(({ id, quantity, total, date, productTitle, price }) => (
           <li

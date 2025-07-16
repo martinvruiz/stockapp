@@ -29,7 +29,7 @@ const ProductDetail = ({ product, onClickButton }) => {
         {stock > 0 ? `Stock: ${stock}` : "Sin stock"}
       </p>
       <button
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded transition"
+        className="w-full bg-red-700 hover:bg-red-500 text-white py-2 rounded transition"
         onClick={onClickButton}
       >
         Editar producto
