@@ -4,6 +4,8 @@ import {
   deleteDoc,
   doc,
   onSnapshot,
+  orderBy,
+  query,
   updateDoc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -19,8 +21,10 @@ const useDB = () => {
 
     const productRef = collection(firestore, "products");
 
+    const q = query(productRef, orderBy("title"));
+
     const fetchData = onSnapshot(
-      productRef,
+      q,
       (snapshot) => {
         const items = snapshot.docs.map((doc) => {
           return {

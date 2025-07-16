@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { firestore } from "@/db/firestore.js";
 import useSales from "@/hooks/useSales";
 
@@ -22,7 +22,9 @@ export default function GenerateSale() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const snapshot = await getDocs(collection(firestore, "products"));
+      const products = collection(firestore, "products");
+      const q = query(products, orderBy("title"));
+      const snapshot = await getDocs(q);
       const productList = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
