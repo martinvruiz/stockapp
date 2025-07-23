@@ -1,17 +1,39 @@
 "use client";
 
 import useSales from "@/hooks/useSales";
+import { useState } from "react";
+import Modal from "./Modal";
+import ViewSale from "./ViewSale";
 
 export default function TotalSales() {
-  const { sales, loading, error } = useSales();
+  const { sales: data, deleteSale, loading, error } = useSales();
+  const [sale, setSale] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   if (loading) return <p className="text-center py-6">Cargando ventas...</p>;
   if (error)
     return <p className="text-center py-6 text-red-500">Error: {error}</p>;
 
-  if (sales.length === 0) {
+  if (data.length === 0) {
     return <p className="text-center py-6">No hay ventas registradas aún.</p>;
   }
+
+  const handleViewProduct = (product) => {
+    setSale(product);
+    setModalOpen(true);
+  };
+
+  const handleDeleteSale = async (id) => {
+    const success = await deleteSale(id);
+    if (success) {
+      setSale(null);
+      setModalOpen(false);
+      return true;
+    } else {
+      alert("Error al eliminar la venta");
+      return false;
+    }
+  };
 
   return (
     <div className="w-full min-h-full mx-auto p-4">
@@ -19,23 +41,29 @@ export default function TotalSales() {
         Ventas totales
       </h2>
       <ul className="divide-y divide-gray-300 border rounded">
-        {sales.map(({ id, quantity, total, date, productTitle, price }) => (
-          <li
-            key={id}
-            className="flex justify-between items-center p-4 bg-white text-black"
+        {data.map((sale) => (
+          <button
+            key={sale.id}
+            className="flex text-start justify-between items-center p-4 bg-white text-black w-full cursor-pointer"
+            onClick={() => handleViewProduct(sale)}
           >
             <div>
-              <p className="font-semibold text-red-700">{productTitle}</p>
-              <p className="text-gray-600">Cantidad: {quantity}</p>
-              <p className="text-gray-600">Precio: ${price.toFixed(2)}</p>
-              <p className="text-gray-600">Total: ${total.toFixed(2)}</p>
+              <p className="font-semibold text-red-700">{sale.productTitle}</p>
+              <p className="text-gray-600">Cantidad: {sale.quantity}</p>
+              <p className="text-gray-600">Precio: ${sale.price.toFixed(2)}</p>
+              <p className="text-gray-600">Total: ${sale.total.toFixed(2)}</p>
             </div>
             <div className="text-sm text-gray-400">
-              {date ? date.toDate().toLocaleDateString() : "Sin fecha"}
+              {sale.date
+                ? sale.date.toDate().toLocaleDateString()
+                : "Sin fecha"}
             </div>
-          </li>
+          </button>
         ))}
       </ul>
+      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+        <ViewSale sale={sale} onDelete={handleDeleteSale} />
+      </Modal>
     </div>
   );
 }

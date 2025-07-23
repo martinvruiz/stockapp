@@ -5,9 +5,8 @@ import {
   doc,
   updateDoc,
   getDoc,
-  getDocs,
-  query,
   onSnapshot,
+  deleteDoc,
 } from "firebase/firestore";
 import { firestore } from "@/db/firestore.js";
 
@@ -38,7 +37,7 @@ export default function useSales() {
     return () => unsubscribe();
   }, []);
 
-  const addSale = async ({ productId, quantity, price }) => {
+  const addSale = async ({ productId, quantity, price, cost }) => {
     setLoading(true);
     setError(null);
 
@@ -61,6 +60,7 @@ export default function useSales() {
         productId,
         productTitle: productData.title,
         quantity,
+        cost,
         price,
         total: quantity * price,
         date: new Date(),
@@ -77,5 +77,22 @@ export default function useSales() {
     }
   };
 
-  return { addSale, loading, error, sales, setError };
+  const deleteSale = async (id) => {
+    if (!id) return;
+    setLoading(true);
+    setError(null);
+
+    try {
+      await deleteDoc(doc(firestore, "sales", id));
+      setSales((prevSales) => prevSales.filter((sale) => sale.id !== id));
+      setLoading(false);
+      return true;
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+      return false;
+    }
+  };
+
+  return { addSale, deleteSale, loading, error, sales, setError };
 }

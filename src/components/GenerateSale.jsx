@@ -40,6 +40,7 @@ export default function GenerateSale() {
       productId: data.productId,
       quantity: Number(data.quantity),
       price: Number(data.price),
+      cost: Number(data.cost),
     });
 
     reset();
@@ -51,6 +52,9 @@ export default function GenerateSale() {
     if (selectedProduct) {
       const finalPrice = selectedProduct.price * selectedProduct.revenue;
       setValue("price", finalPrice);
+
+      const cost = selectedProduct.price;
+      setValue("cost", cost);
     }
   }, [selectedProduct, setValue]);
 
@@ -104,7 +108,26 @@ export default function GenerateSale() {
       </div>
 
       <div className="flex flex-col items-center">
-        <label className="block mb-1">Precio</label>
+        <label className="block mb-1">Costo</label>
+        <input
+          type="number"
+          step="any"
+          min="0.01"
+          {...register("cost", {
+            required: "Ingrese un monto valido",
+            min: 0.01,
+          })}
+          className="w-full border rounded px-3 py-2"
+        />
+        {errors.price && (
+          <p className="text-red-700 bg-red-200 rounded px-2 py-1 text-sm text-center inline-block mt-2">
+            {errors.price.message}
+          </p>
+        )}
+      </div>
+
+      <div className="flex flex-col items-center">
+        <label className="block mb-1">Precio Final</label>
         <input
           type="number"
           step="any"
