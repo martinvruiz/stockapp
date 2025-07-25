@@ -4,18 +4,24 @@ import useSales from "@/hooks/useSales";
 import { useState } from "react";
 import Modal from "./Modal";
 import ViewSale from "./ViewSale";
+import { ToastConfirm } from "./ToastConfirm";
 
 export default function TotalSales() {
   const { sales: data, deleteSale, loading, error } = useSales();
   const [sale, setSale] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
-  if (loading) return <p className="text-center py-6">Cargando ventas...</p>;
+  if (loading)
+    return <p className="text-center py-6 text-red-700">Cargando ventas...</p>;
   if (error)
     return <p className="text-center py-6 text-red-500">Error: {error}</p>;
 
   if (data.length === 0) {
-    return <p className="text-center py-6">No hay ventas registradas aún.</p>;
+    return (
+      <p className="text-center py-6 text-red-700">
+        No hay ventas registradas aún.
+      </p>
+    );
   }
 
   const handleViewProduct = (product) => {
@@ -24,15 +30,17 @@ export default function TotalSales() {
   };
 
   const handleDeleteSale = async (id) => {
-    const success = await deleteSale(id);
-    if (success) {
-      setSale(null);
-      setModalOpen(false);
-      return true;
-    } else {
-      alert("Error al eliminar la venta");
-      return false;
-    }
+    ToastConfirm("¿Eliminar venta?", async () => {
+      const success = await deleteSale(id);
+      if (success) {
+        setSale(null);
+        setModalOpen(false);
+        return true;
+      } else {
+        alert("Error al eliminar la venta");
+        return false;
+      }
+    });
   };
 
   return (

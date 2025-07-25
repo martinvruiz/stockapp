@@ -17,10 +17,14 @@ export default function ViewSale({ sale, onDelete }) {
           <span className="font-medium">Cantidad:</span> {sale.quantity}
         </p>
         <p>
-          <span className="font-medium">Precio unitario:</span> ${sale.price}
+          <span className="font-medium">Costo:</span> ${sale.cost}
         </p>
         <p>
-          <span className="font-medium">Costo:</span> ${sale.cost}
+          <span className="font-medium">Costo Total:</span> $
+          {sale.cost * sale.quantity}
+        </p>
+        <p>
+          <span className="font-medium">Precio unitario:</span> ${sale.price}
         </p>
         <p>
           <span className="font-medium">Total:</span> ${sale.total}

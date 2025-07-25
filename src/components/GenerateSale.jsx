@@ -3,9 +3,10 @@
 import { useForm } from "react-hook-form";
 
 import { useEffect, useState } from "react";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { firestore } from "@/db/firestore.js";
 import useSales from "@/hooks/useSales";
+import { ToastConfirm } from "./ToastConfirm";
 
 export default function GenerateSale() {
   const {
@@ -21,29 +22,30 @@ export default function GenerateSale() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const products = collection(firestore, "products");
-      const q = query(products, orderBy("title"));
-      const snapshot = await getDocs(q);
+    const productsRef = collection(firestore, "products");
+    const q = query(productsRef, orderBy("title"));
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       const productList = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setProducts(productList);
-    };
+    });
 
-    fetchProducts();
+    return () => unsubscribe();
   }, []);
 
   const onSubmit = async (data) => {
-    await addSale({
-      productId: data.productId,
-      quantity: Number(data.quantity),
-      price: Number(data.price),
-      cost: Number(data.cost),
+    ToastConfirm("¿Generar venta?", async () => {
+      await addSale({
+        productId: data.productId,
+        quantity: Number(data.quantity),
+        price: Number(data.price),
+        cost: Number(data.cost),
+      });
+      reset();
     });
-
-    reset();
   };
 
   const selectedProduct = products.find((p) => p.id === watch("productId"));
