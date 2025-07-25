@@ -14,7 +14,6 @@ const useAuth = () => {
 
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
       setUser(user.user);
     } catch (error) {
       console.error(error);
