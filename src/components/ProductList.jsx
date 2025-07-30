@@ -1,3 +1,4 @@
+import { Autour_One } from "next/font/google";
 import Image from "next/image";
 
 export default function ProductList({ productsData, onClickProducts }) {
@@ -15,8 +16,9 @@ export default function ProductList({ productsData, onClickProducts }) {
           >
             <div className="h-48 overflow-hidden">
               <Image
-                width={260}
-                height={250}
+                width={300}
+                height={300}
+                className="w-full h-full object-cover"
                 src={product.img}
                 alt={product.title}
                 onError={(e) => {
