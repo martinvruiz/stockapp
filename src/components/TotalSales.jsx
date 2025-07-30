@@ -44,8 +44,8 @@ export default function TotalSales() {
   };
 
   return (
-    <div className="w-full min-h-full mx-auto p-4">
-      <h2 className="text-2xl text-red-700 font-bold pb-4 text-center">
+    <div className="w-full min-h-full mx-auto p-4 bg-red-700 rounded-md">
+      <h2 className="text-2xl text-white font-bold pb-4 text-center">
         Ventas totales
       </h2>
       <ul className="divide-y divide-gray-300 border rounded">

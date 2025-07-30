@@ -43,22 +43,64 @@ export default function Navbar({ children }) {
                 className="hover:bg-gray-700 p-2 rounded flex gap-3 items-center"
               >
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path d="M12 3v18"></path>
-                  <path d="M19 21H5"></path>
-                  <path d="M3 9h4l2 2h4l2-2h4"></path>
-                  <path d="M3 9v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9"></path>
+                  <path
+                    fill="#fff"
+                    d="M12 6v-6h-8v6h-4v7h16v-7h-4zM7 12h-6v-5h2v1h2v-1h2v5zM5 6v-5h2v1h2v-1h2v5h-6zM15 12h-6v-5h2v1h2v-1h2v5z"
+                  ></path>
+                  <path fill="#fff" d="M0 16h3v-1h10v1h3v-2h-16v2z"></path>
                 </svg>
                 <span>Stock</span>
+              </Link>
+              <Link
+                href={"/cargarpedido"}
+                onClick={() => setOpen(false)}
+                className="hover:bg-gray-700 p-2 rounded flex gap-3 items-center"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 1024 1024"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="#fff"
+                    d="M317.056 128L128 344.064V896h768V344.064L706.944 128H317.056zm-14.528-64h418.944a32 32 0 0124.064 10.88l206.528 236.096A32 32 0 01960 332.032V928a32 32 0 01-32 32H96a32 32 0 01-32-32V332.032a32 32 0 017.936-21.12L278.4 75.008A32 32 0 01302.528 64z"
+                  />
+                  <path fill="#fff" d="M64 320h896v64H64z" />
+                  <path
+                    fill="#fff"
+                    d="M448 327.872V640h128V327.872L526.08 128h-28.16L448 327.872zM448 64h128l64 256v352a32 32 0 01-32 32H416a32 32 0 01-32-32V320l64-256z"
+                  />
+                </svg>
+                <span>Cargar pedido</span>
+              </Link>
+              <Link
+                href={"/pedidos"}
+                onClick={() => setOpen(false)}
+                className="hover:bg-gray-700 p-2 rounded flex gap-3 items-center"
+              >
+                <svg
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 0.6 0.6"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.33 0.03a0.03 0.03 0 1 0 -0.06 0v0.228L0.231 0.219a0.03 0.03 0 0 0 -0.042 0.042l0.09 0.09a0.03 0.03 0 0 0 0.042 0l0.09 -0.09a0.03 0.03 0 0 0 -0.042 -0.042L0.33 0.258z"
+                    fill="#fff"
+                  />
+                  <path
+                    d="M0.09 0.42V0.09h0.12V0.03H0.075A0.045 0.045 0 0 0 0.03 0.075v0.45A0.045 0.045 0 0 0 0.075 0.57h0.45a0.045 0.045 0 0 0 0.045 -0.045v-0.45A0.045 0.045 0 0 0 0.525 0.03H0.39v0.06h0.12v0.33h-0.105c-0.023 0 -0.042 0.02 -0.058 0.037l-0.003 0.004A0.06 0.06 0 0 1 0.3 0.48a0.06 0.06 0 0 1 -0.044 -0.019l-0.003 -0.004C0.237 0.44 0.218 0.42 0.195 0.42z"
+                    fill="#fff"
+                  />
+                </svg>
+                <span>Pedidos</span>
               </Link>
               <Link
                 href={"/venta"}

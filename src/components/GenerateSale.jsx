@@ -152,7 +152,7 @@ export default function GenerateSale() {
         disabled={loading}
         className="w-full bg-white text-black py-2 rounded hover:bg-gray-400"
       >
-        {loading ? "Registrando..." : "Registrar Venta"}
+        {loading ? "Registrando..." : "Guardar venta"}
       </button>
 
       {error && (
