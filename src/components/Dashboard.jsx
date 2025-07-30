@@ -5,7 +5,6 @@ import React from "react";
 import TotalProfit from "./TotalProfit";
 
 export default function Dashboard() {
-  const { orders, loading, error } = useOrders();
   const { getMostSoldProduct, sales } = useSales();
 
   const { topProduct, totalSold } = getMostSoldProduct(sales);
@@ -14,8 +13,10 @@ export default function Dashboard() {
     <div className="bg-red-700 p-4 flex flex-col items-center min-w-xs md:min-w-md rounded-md">
       <h2 className="text-xl font-semibold">Estadisticas</h2>
       <p className="text-center mt-4">
-        Modelo más vendido: <strong>{topProduct}</strong> ({totalSold}{" "}
-        unidad/es)
+        Modelo más vendido: <strong>{topProduct}</strong>
+      </p>
+      <p className="text-center">
+        Total vendido: <strong>({totalSold} unidad/es)</strong>
       </p>
       <TotalProfit />
     </div>

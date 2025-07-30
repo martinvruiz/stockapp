@@ -3,6 +3,10 @@
 import { useState } from "react";
 import useSales from "@/hooks/useSales";
 import Modal from "./Modal";
+import { es } from "date-fns/locale";
+import { formatInTimeZone } from "date-fns-tz";
+
+const timeZone = "America/Argentina/Buenos_Aires";
 
 const getMonthlyProfitData = (sales) => {
   const data = {};
@@ -11,19 +15,12 @@ const getMonthlyProfitData = (sales) => {
     if (!sale.date) return;
     const date = sale.date.toDate();
 
-    const monthYearStr = date.toLocaleDateString("es-AR", {
-      timeZone: "America/Argentina/Buenos_Aires",
-      year: "numeric",
-      month: "2-digit",
-    });
-
-    const [month, year] = monthYearStr.split("/");
-    const monthKey = `${year}-${month}`;
+    const monthKey = formatInTimeZone(date, timeZone, "yyyy-MM");
 
     const profit = (sale.price - sale.cost) * sale.quantity;
 
     if (!data[monthKey]) {
-      data[monthKey] = { profit: 0, sales: [] };
+      data[monthKey] = { profit: 0, sales: [], date };
     }
 
     data[monthKey].profit += profit;
@@ -52,24 +49,24 @@ export default function MonthlyProfitsWithDetail() {
       </h2>
 
       <ul className="space-y-3">
-        {sortedMonths.map((monthKey) => (
-          <li
-            key={monthKey}
-            className="bg-white shadow-sm border rounded p-3 flex justify-between items-center cursor-pointer hover:bg-gray-200 gap-2"
-            onClick={() => setSelectedMonth(monthKey)}
-          >
-            <span className="text-gray-700 font-medium">
-              {new Date(`${monthKey}-01`).toLocaleDateString("es-AR", {
-                month: "long",
-                year: "numeric",
-                timeZone: "America/Argentina/Buenos_Aires",
-              })}
-            </span>
-            <span className="text-green-700 font-semibold">
-              ${data[monthKey].profit.toLocaleString("es-AR")}
-            </span>
-          </li>
-        ))}
+        {sortedMonths.map((monthKey) => {
+          return (
+            <li
+              key={monthKey}
+              className="bg-white shadow-sm border rounded p-3 flex justify-between items-center cursor-pointer hover:bg-gray-200 gap-2"
+              onClick={() => setSelectedMonth(monthKey)}
+            >
+              <span className="text-gray-700 font-medium">
+                {formatInTimeZone(data[monthKey].date, timeZone, "MMMM yyyy", {
+                  locale: es,
+                })}
+              </span>
+              <span className="text-green-700 font-semibold">
+                ${data[monthKey].profit.toLocaleString("es-AR")}
+              </span>
+            </li>
+          );
+        })}
       </ul>
 
       <Modal isOpen={!!selectedMonth} onClose={() => setSelectedMonth(null)}>
