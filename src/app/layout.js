@@ -13,8 +13,8 @@ export const metadata = {
   title: "Stock app",
   description: "Stock app",
   icons: {
-    icon: "/couLogo.png",
-    apple: "/couLogo.png",
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
     shortcut: "/couLogo.png",
   },
 };
