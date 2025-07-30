@@ -12,6 +12,11 @@ const roboto = Roboto({
 export const metadata = {
   title: "Stock app",
   description: "Stock app",
+  icons: {
+    icon: "/couLogo.png",
+    apple: "/couLogo.png",
+    shortcut: "/couLogo.png",
+  },
 };
 
 export default function RootLayout({ children }) {
