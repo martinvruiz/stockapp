@@ -4,10 +4,6 @@ import Image from "next/image";
 export default function ProductList({ productsData, onClickProducts }) {
   return (
     <div className="mx-auto px-4 pb-8">
-      <h1 className="text-3xl font-bold text-center text-red-700 mb-4">
-        Productos
-      </h1>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {productsData.map((product) => (
           <div

@@ -48,12 +48,17 @@ export default function MonthlyProfitsWithDetail() {
         Ganancia por mes
       </h2>
 
-      <ul className="space-y-3">
-        {sortedMonths.map((monthKey) => {
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 place-items-center">
+        {sortedMonths.map((monthKey, idx) => {
+          const isLastOdd =
+            sortedMonths.length % 2 === 1 && idx === sortedMonths.length - 1;
           return (
             <li
               key={monthKey}
-              className="bg-white shadow-sm border rounded p-3 flex justify-between items-center cursor-pointer hover:bg-gray-200 gap-2"
+              className={
+                "bg-white shadow-sm border rounded p-3 flex justify-between items-center cursor-pointer hover:bg-gray-200 gap-2" +
+                (isLastOdd ? " sm:col-span-2 justify-center" : "")
+              }
               onClick={() => setSelectedMonth(monthKey)}
             >
               <span className="text-gray-700 font-medium">
