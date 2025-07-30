@@ -17,6 +17,9 @@ export default function ViewSale({ sale, onDelete }) {
           <span className="font-medium">Cantidad:</span> {sale.quantity}
         </p>
         <p>
+          <span className="font-medium">Nota:</span> {sale.note || "N/A"}
+        </p>
+        <p>
           <span className="font-medium">Costo:</span> ${sale.cost}
         </p>
         <p>

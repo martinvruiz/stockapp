@@ -37,7 +37,7 @@ export default function useSales() {
     return () => unsubscribe();
   }, []);
 
-  const addSale = async ({ productId, quantity, price, cost }) => {
+  const addSale = async ({ productId, quantity, price, cost, note }) => {
     setLoading(true);
     setError(null);
 
@@ -59,6 +59,7 @@ export default function useSales() {
       await addDoc(collection(firestore, "sales"), {
         productId,
         productTitle: productData.title,
+        note,
         quantity,
         cost,
         price,

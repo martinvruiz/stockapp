@@ -43,6 +43,7 @@ export default function GenerateSale() {
         quantity: Number(data.quantity),
         price: Number(data.price),
         cost: Number(data.cost),
+        note: data.note,
       });
       reset();
     });
@@ -107,6 +108,16 @@ export default function GenerateSale() {
             {errors.quantity.message}
           </p>
         )}
+      </div>
+
+      <div className="flex flex-col items-center">
+        <label className="block mb-1">Nota (opcional)</label>
+        <input
+          type="text"
+          maxLength="100"
+          {...register("note")}
+          className="w-full border rounded px-3 py-2"
+        />
       </div>
 
       <div className="flex flex-col items-center">
