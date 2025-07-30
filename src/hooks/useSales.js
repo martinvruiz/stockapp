@@ -94,5 +94,56 @@ export default function useSales() {
     }
   };
 
-  return { addSale, deleteSale, loading, error, sales, setError };
+  const getMostSoldProduct = (sales) => {
+    const countMap = {};
+
+    sales.forEach((sale) => {
+      const title = sale.productTitle;
+      countMap[title] = (countMap[title] || 0) + sale.quantity;
+    });
+
+    const sorted = Object.entries(countMap).sort((a, b) => b[1] - a[1]);
+    const [topProduct, totalSold] = sorted[0] || [];
+
+    return { topProduct, totalSold };
+  };
+
+  const getMonthlyProfit = (sales) => {
+    const monthlyProfit = {};
+
+    sales.forEach((sale) => {
+      if (!sale.date) return;
+
+      const date = sale.date.toDate();
+
+      const monthKey = date.toLocaleString("es-AR", {
+        timeZone: "America/Argentina/Buenos_Aires",
+        year: "numeric",
+        month: "2-digit",
+      });
+
+      const [month, year] = monthKey.split("/");
+      const key = `${year}-${month}`;
+
+      const profit = (sale.price - sale.cost) * sale.quantity;
+
+      if (!monthlyProfit[key]) {
+        monthlyProfit[key] = 0;
+      }
+
+      monthlyProfit[key] += profit;
+    });
+
+    return monthlyProfit;
+  };
+  return {
+    addSale,
+    deleteSale,
+    getMostSoldProduct,
+    getMonthlyProfit,
+    loading,
+    error,
+    sales,
+    setError,
+  };
 }

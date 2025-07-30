@@ -23,6 +23,7 @@ export default function ViewOrder({ order, onDelete }) {
           className="w-full bg-red-700 mt-4 p-4 rounded-md hover:bg-red-600"
           onClick={async (e) => {
             e.stopPropagation();
+            await onDelete(order.id);
           }}
         >
           <span className="text-white w-full">Borrar pedido</span>

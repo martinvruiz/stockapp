@@ -8,6 +8,7 @@ import useOrders from "@/hooks/useOrders";
 
 export default function TotalOrders() {
   const { orders, deleteOrder, loading, error } = useOrders();
+  console.log(orders);
   const [order, setOrder] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -31,7 +32,7 @@ export default function TotalOrders() {
   };
 
   const handleDeleteOrder = async (id) => {
-    ToastConfirm("¿Eliminar orden?", async () => {
+    ToastConfirm("¿Eliminar pedido?", async () => {
       const success = await deleteOrder(id);
       if (success) {
         setOrder(null);

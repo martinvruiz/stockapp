@@ -91,7 +91,7 @@ export default function useOrders() {
     setError(null);
 
     try {
-      await deleteDoc(doc(firestore, "restockOrders", id));
+      await deleteDoc(doc(firestore, "orders", id));
       setOrders((prevOrders) => prevOrders.filter((order) => order.id !== id));
       setLoading(false);
       return true;
@@ -102,5 +102,12 @@ export default function useOrders() {
     }
   };
 
-  return { addOrder, deleteOrder, loading, error, orders, setError };
+  return {
+    addOrder,
+    deleteOrder,
+    loading,
+    error,
+    orders,
+    setError,
+  };
 }
