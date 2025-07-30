@@ -72,9 +72,8 @@ export default function MonthlyProfitsWithDetail() {
       <Modal isOpen={!!selectedMonth} onClose={() => setSelectedMonth(null)}>
         <h3 className="text-xl font-bold mb-4 text-red-700">
           Ventas de{" "}
-          {new Date(`${selectedMonth}-01`).toLocaleDateString("es-AR", {
-            month: "long",
-            year: "numeric",
+          {formatInTimeZone(data[monthKey].date, timeZone, "MMMM yyyy", {
+            locale: es,
           })}
         </h3>
 
